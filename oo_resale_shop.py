@@ -60,8 +60,3 @@ def main():
 
 
 main()
-
-
-#is this the right commenting convention
-#am i doing the indexing of this right cause i just tried to copy down what I have
-#am i supposed to leave in the code in def main that proves that it does what te rubric does - like buy , sell?
