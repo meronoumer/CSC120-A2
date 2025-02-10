@@ -45,38 +45,36 @@ class ResaleShop:
                 print(f'Computer:self.inventory.index(computer) : {computer}')
         else:
             print("No inventory to display.")
-    def refurbish(self, index, new_operating_system):
-        """
-    
-        Refurbishes a computer in the inventory based on when it was manufactured.
+    def refurbish(self, index, new_operating_system=None):
+     """
+    Refurbishes a computer in the inventory based on its manufacturing year 
+    and optionally installs a new operating system.
 
-        Updates the computer's price based on its age and also installs a new operating system.
+    Args:
+        index (int): The index (or item ID) of the computer in the inventory.
+        new_operating_system (str): The new operating system to install..
+    """
+     if index in self.inventory:
+            computer = self.inventory[index]
 
-        Args:
-            index (int): The index (or them item ID) of the computer in the inventory.
-            new_operating_system (str, optional): The new operating system to install. 
-                Default is set to  None, which would mean no operating system update.
-
-        """
-        if index in self.inventory:
-            computer = self.inventory[index]  # Retrieve the Computer object
-
-            year_made = computer.year_made  # Access year_made directly
+            year_made = computer.year_made
 
             if year_made < 2000:
-                computer.price = 0  
+                computer.update_price(0)  
             elif year_made < 2012:
-                computer.price = 250  
+                computer.update_price(250)
             elif year_made < 2018:
-                computer.price = 550  
+                computer.update_price(550) 
             else:
-                computer.price = 1000  
+                computer.update_price(1000) 
 
             if new_operating_system:
-                computer.operating_system = new_operating_system  
-
-        else:
-            print(f"Item {index} not found. Please select another item to refurbish.")
+                computer.update_os(new_operating_system)
+     else:
+        print(f"Item {index} not found. Please select another item to refurbish.")
+     
+     
+        
 
 
 

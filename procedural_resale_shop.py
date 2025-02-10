@@ -56,22 +56,7 @@ def print_inventory():
     else:
         print("No inventory to display.")
 
-def refurbish(item_id: int, new_os: Optional[str] = None):
-    if inventory[item_id] is not None:
-        computer = inventory[item_id] # locate the computer
-        if int(computer["year_made"]) < 2000:
-            computer["price"] = 0 # too old to sell, donation only
-        elif int(computer["year_made"]) < 2012:
-            computer["price"] = 250 # heavily-discounted price on machines 10+ years old
-        elif int(computer["year_made"]) < 2018:
-            computer["price"] = 550 # discounted price on machines 4-to-10 year old machines
-        else:
-            computer["price"] = 1000 # recent stuff
 
-        if new_os is not None:
-            computer["operating_system"] = new_os # update details after installing new OS
-    else:
-        print("Item", item_id, "not found. Please select another item to refurbish.")
 
 def main():
     buy({"description":"2019 MacBook Pro", "processor_type":"Intel", "hard_drive_capacity":256, "memory":16, "operating_system":"High Sierra", "year_made":2019, "price":1000})
