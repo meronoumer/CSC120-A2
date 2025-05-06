@@ -55,6 +55,22 @@ def print_inventory():
             print(f'Item ID: {inventory.index(item)} : {item}')
     else:
         print("No inventory to display.")
+def refurbish(item_id: int, new_os: Optional[str] = None):
+    if inventory[item_id] is not None:
+        computer = inventory[item_id] # locate the computer
+        if int(computer["year_made"]) < 2000:
+            computer["price"] = 0 # too old to sell, donation only
+        elif int(computer["year_made"]) < 2012:
+            computer["price"] = 250 # heavily-discounted price on machines 10+ years old
+        elif int(computer["year_made"]) < 2018:
+            computer["price"] = 550 # discounted price on machines 4-to-10 year old machines
+        else:
+            computer["price"] = 1000 # recent stuff
+
+        if new_os is not None:
+            computer["operating_system"] = new_os # update details after installing new OS
+    else:
+        print("Item", item_id, "not found. Please select another item to refurbish.")
 
 
 

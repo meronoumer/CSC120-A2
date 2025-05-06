@@ -1,18 +1,19 @@
 from computer import *
 
-class ResaleShop:
-    """
-    ResaleShop : ResaleShop
+"""
+ResaleShop : ResaleShop
 
-    Description:
-        This class represents a Resale Shop with the inventory attribute as well as methods to access those attributes like buy,sell and print_inventory
-    """
+Description:
+This class represents a Resale Shop with the inventory attribute as well as methods to access those attributes like buy,sell and print_inventory
+"""
+class ResaleShop:
+
 
     def __init__(self):
         """
         Initializes a new Resale Shop Object. 
         """
-        self.inventory : list = []
+        self.inventory = []
     def buy(self,computer:Computer):
         """
         Adds a computer to the inventory and returns its index.
@@ -35,14 +36,27 @@ class ResaleShop:
             print("Item", computer, "sold!")
         else:
             print("Computer", computer,"not. Please select another item to sell.")
-    
-    def print_inventory(self,computer:Computer):
+
         """
         Prints the current inventory of computers.
         """
+    def print_inventory(self,computer:Computer):
+
+        
         if self.inventory:
             for computer in self.inventory:
-                print(f'Computer:self.inventory.index(computer) : {computer}')
+                print(f'Computer:{self.inventory.index(computer)} Description: {computer.description} Processor Type :{computer.processor_type} Hard Drive Capacity:{computer.hard_drive_capacity} Memory :{computer.memory}Operating System:{computer.operating_system} Year Made:{computer.year_made} Price:{computer.price}')
+
+
+                
+                    #   Computer:self.inventory.index(computer),
+                    #   description: {computer.description},
+                    #   processor_type :{computer.processor_type},
+                    #   hard_drive_capacity:{computer.hard_drive_capacity},
+                    #   memory:{computer.memory},
+                    #   operating_system:{computer.operating_system},
+                    #   year_made:{computer.year_made},
+                    #   price:{computer.price}
         else:
             print("No inventory to display.")
     def refurbish(self, index, new_operating_system=None):
@@ -54,11 +68,10 @@ class ResaleShop:
         index (int): The index (or item ID) of the computer in the inventory.
         new_operating_system (str): The new operating system to install..
     """
-     if index in self.inventory:
+     if len(self.inventory)>index and self.inventory[index] is not None :
             computer = self.inventory[index]
 
-            year_made = computer.year_made
-
+            year_made = int(computer.year_made)
             if year_made < 2000:
                 computer.update_price(0)  
             elif year_made < 2012:
@@ -89,8 +102,11 @@ def main():
     store = ResaleShop()
     store.buy(my_laptop)
     store.sell(my_laptop)
-    store.print_inventory()
+    store.print_inventory(my_laptop)
     my_laptop.update_price(499)
+    store.print_inventory(my_laptop)
+    store.refurbish(0, "Windows 11 ")
+    store.print_inventory(my_laptop)
 
 
 main()

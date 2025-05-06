@@ -36,7 +36,7 @@ class Computer:
             price(float): The new price of the computer
         """
         self.price = price
-    def update_os(self,operating_system:float):
+    def update_os(self,operating_system:str):
        """
         Updates the operating system of a computer.
         Args:
